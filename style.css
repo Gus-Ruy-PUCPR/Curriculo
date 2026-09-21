@@ -1,0 +1,271 @@
+/* Variáveis de Cores (Paleta Neutra e Azul Marinho) */
+:root {
+    --navy-blue: #1e3a8a;
+    --navy-dark: #0f172a;
+    --slate-800: #1e293b;
+    --slate-600: #475569;
+    --slate-200: #e2e8f0;
+    --bg-color: #f8fafc;
+    --white: #ffffff;
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--slate-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Barra de Ações (Visível apenas na web) */
+.action-bar {
+    background-color: var(--navy-dark);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.action-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--navy-blue);
+    color: var(--white);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--slate-200);
+    border: 1px solid var(--slate-600);
+}
+
+.btn-outline:hover {
+    background-color: var(--slate-800);
+    color: var(--white);
+}
+
+/* Container Principal do Currículo */
+.resume-wrapper {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Cabeçalho */
+.resume-header {
+    text-align: center;
+    border-bottom: 2px solid var(--slate-200);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.resume-header h1 {
+    color: var(--navy-dark);
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+}
+
+.resume-header h2 {
+    color: var(--navy-blue);
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    color: var(--slate-600);
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+}
+
+/* Seções */
+.resume-section {
+    margin-bottom: 2rem;
+}
+
+.resume-section h3 {
+    color: var(--navy-dark);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-left: 4px solid var(--navy-blue);
+    padding-left: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.resume-section p {
+    color: var(--slate-600);
+    text-align: justify;
+}
+
+/* Cards de Experiência e Educação */
+.experience-card, .education-card {
+    margin-bottom: 1.5rem;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+}
+
+.role-info h4 {
+    color: var(--slate-800);
+    font-size: 1.125rem;
+}
+
+.company {
+    color: var(--navy-blue);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.date {
+    color: var(--slate-600);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Listas */
+.duties {
+    padding-left: 1.25rem;
+    color: var(--slate-600);
+}
+
+.duties li {
+    margin-bottom: 0.5rem;
+}
+
+.duties strong {
+    color: var(--slate-800);
+}
+
+/* Grid de Habilidades */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-group h4 {
+    color: var(--slate-800);
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.skill-group p {
+    font-size: 0.9rem;
+    color: var(--slate-600);
+    text-align: left;
+}
+
+/* Layout Responsivo (Mobile) */
+@media (max-width: 640px) {
+    .resume-wrapper {
+        margin: 0;
+        border-radius: 0;
+        padding: 1.5rem;
+    }
+    
+    .experience-header {
+        flex-direction: column;
+    }
+    
+    .date {
+        margin-top: 0.25rem;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Regras Estritas de Impressão (A4) */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 1.5cm;
+    }
+
+    body {
+        background: var(--white);
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .resume-wrapper {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .resume-section {
+        page-break-inside: avoid;
+    }
+
+    .experience-card, .education-card {
+        page-break-inside: avoid;
+    }
+
+    /* Otimização de cor para impressão */
+    * {
+        color: #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .resume-section h3 {
+        border-left-color: #000 !important;
+    }
+}
