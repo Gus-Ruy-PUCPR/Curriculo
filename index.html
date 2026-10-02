@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,10 +24,17 @@
     <!-- Barra de Ações (Oculta na Impressão) -->
     <nav class="action-bar no-print">
         <div class="action-container">
-            <button class="btn btn-primary" onclick="window.print()">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                Baixar PDF
-            </button>
+            <div style="display: flex; gap: 0.75rem;">
+                <button class="btn btn-primary" onclick="window.print()">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    <span data-i18n="btn_pdf">Baixar PDF</span>
+                </button>
+                <!-- Botão de Tradução -->
+                <button class="btn btn-outline" id="btn-lang" onclick="toggleLanguage()">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <span id="lang-label">EN</span>
+                </button>
+            </div>
             <div class="social-links">
                 <a href="https://github.com/Gus-Ruy-PUCPR" target="_blank" class="btn btn-outline">GitHub</a>
                 <a href="https://linkedin.com/in/SEU_LINKEDIN" target="_blank" class="btn btn-outline">LinkedIn</a>
@@ -38,7 +45,7 @@
     <div class="resume-wrapper">
         <header class="resume-header">
             <h1>Gustavo de Carvalho Ruy</h1>
-            <h2>Desenvolvedor de Firmware, IoT & Software</h2>
+            <h2 data-i18n="role">Desenvolvedor de Firmware, IoT & Software</h2>
             <div class="contact-info">
                 <span>📍 Curitiba, PR</span>
                 <span>✉️ gustavol4ruu@gmail.com</span>
@@ -47,94 +54,178 @@
         </header>
 
         <section class="resume-section">
-            <h3>Resumo Profissional</h3>
-            <p>
+            <h3 data-i18n="summary_title">Resumo Profissional</h3>
+            <p data-i18n="summary_text">
                 Desenvolvedor de software focado em integração de hardware e arquiteturas de alta performance. Especialista na criação de firmware em <strong>C</strong> para microcontroladores ESP32 e desenvolvimento de microsserviços backend robustos em <strong>Go</strong>. Sólida experiência em Internet das Coisas Industrial (IIoT), automação de processos, protocolos de mensageria (MQTT, SQS) e administração de ambientes Linux.
             </p>
         </section>
 
         <section class="resume-section">
-            <h3>Experiência Profissional</h3>
+            <h3 data-i18n="exp_title">Experiência Profissional</h3>
             
             <div class="experience-card">
-                <div class="experience-card">
-                    <div class="experience-header">
-                        <div class="role-info">
-                            <h4>Programador C / Desenvolvedor de Sistemas Embarcados</h4>
-                            <span class="company">AT Software Solutions</span>
-                        </div>
-                        <span class="date">11/2024 – 02/2026</span>
+                <div class="experience-header">
+                    <div class="role-info">
+                        <h4 data-i18n="job1_title">Programador C / Desenvolvedor de Sistemas Embarcados</h4>
+                        <span class="company">AT Software Solutions</span>
                     </div>
-                    
-                    <!-- Projeto 1: Coletores ESP32 e Backend Go -->
-                    <div style="margin-bottom: 1rem;">
-                        <h5 style="color: var(--slate-800); margin-bottom: 0.5rem; font-size: 0.95rem;">Projeto: Telemetria IIoT e Roteamento de Dados</h5>
-                        <ul class="duties">
-                            <li>Desenvolvimento de firmware em <strong>C</strong> para coletores de dados industriais utilizando ESP32 e <strong>FreeRTOS</strong>, focado em alta confiabilidade e determinismo.</li>
-                            <li>Criação de serviços de alta vazão em <strong>Go</strong> para ingestão, processamento via regex e roteamento de telemetria recebida por MQTT.</li>
-                            <li>Integração com bancos de dados relacionais (PostgreSQL) e orquestração de entregas com sistemas de filas.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Projeto 2: Raspberry e PLC -->
-                    <div>
-                        <h5 style="color: var(--slate-800); margin-bottom: 0.5rem; font-size: 0.95rem;">Projeto: Integração SmartFactory</h5>
-                        <ul class="duties">
-                            <li>Administração de ambiente <strong>Linux (Debian)</strong> embarcado em <strong>Raspberry Pi</strong> no chão de fábrica, configurando acessos SSH e rotinas via systemd.</li>
-                            <li>Manutenção e execução de aplicação conteinerizada via <strong>Docker</strong> responsável pela extração contínua de tags de Controladores Lógicos Programáveis (PLCs).</li>
-                            <li>Garantia da continuidade do serviço e monitoramento do sistema operacional para assegurar a estabilidade da coleta de dados industriais.</li>
-                        </ul>
-                    </div>
+                    <span class="date">11/2024 – 02/2026</span>
                 </div>
+                
+                <!-- Projeto 1 -->
+                <div style="margin-bottom: 1rem;">
+                    <h5 style="color: var(--slate-800); margin-bottom: 0.5rem; font-size: 0.95rem;" data-i18n="proj1_title">Projeto: Telemetria IIoT e Roteamento de Dados</h5>
+                    <ul class="duties">
+                        <li data-i18n="proj1_item1">Desenvolvimento de firmware em <strong>C</strong> para coletores de dados industriais utilizando ESP32 e <strong>FreeRTOS</strong>, focado em alta confiabilidade e determinismo.</li>
+                        <li data-i18n="proj1_item2">Criação de serviços de alta vazão em <strong>Go</strong> para ingestão, processamento via regex e roteamento de telemetria recebida por MQTT.</li>
+                        <li data-i18n="proj1_item3">Integração com bancos de dados relacionais (PostgreSQL) e orquestração de entregas com sistemas de filas.</li>
+                    </ul>
+                </div>
+
+                <!-- Projeto 2 -->
+                <div>
+                    <h5 style="color: var(--slate-800); margin-bottom: 0.5rem; font-size: 0.95rem;" data-i18n="proj2_title">Projeto: Integração SmartFactory</h5>
+                    <ul class="duties">
+                        <li data-i18n="proj2_item1">Administração de ambiente <strong>Linux (Debian)</strong> embarcado em <strong>Raspberry Pi</strong> no chão de fábrica, configurando acessos SSH e rotinas via systemd.</li>
+                        <li data-i18n="proj2_item2">Manutenção e execução de aplicação conteinerizada via <strong>Docker</strong> responsável pela extração contínua de tags de Controladores Lógicos Programáveis (PLCs).</li>
+                        <li data-i18n="proj2_item3">Garantia da continuidade do serviço e monitoramento do sistema operacional para assegurar a estabilidade da coleta de dados industriais.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
         <section class="resume-section">
-            <h3>Projetos Técnicos Relevantes</h3>
+            <h3 data-i18n="tech_proj_title">Projetos Técnicos Relevantes</h3>
             <ul class="duties">
-                <li><strong>Aida (Assistente Virtual):</strong> Aplicação desktop desenvolvida em <strong>C# WPF</strong> com síntese de áudio (NAudio), personas de IA customizáveis e persistência em banco de dados MySQL.</li>
+                <li data-i18n="tech_proj_aida"><strong>Aida (Assistente Virtual):</strong> Aplicação desktop desenvolvida em <strong>C# WPF</strong> com síntese de áudio (NAudio), personas de IA customizáveis e persistência em banco de dados MySQL.</li>
             </ul>
         </section>
 
         <section class="resume-section">
-            <h3>Formação Acadêmica</h3>
+            <h3 data-i18n="edu_title">Formação Acadêmica</h3>
             <div class="education-card">
                 <div class="role-info">
-                    <h4>Bacharelado em Engenharia de Software</h4>
+                    <h4 data-i18n="edu1_title">Bacharelado em Engenharia de Software</h4>
                     <span class="company">Pontifícia Universidade Católica do Paraná (PUCPR)</span>
                 </div>
-                <span class="date">08/2026 – Cursando</span>
+                <span class="date" data-i18n="edu1_date">08/2026 – Cursando</span>
             </div>
             <div class="education-card">
                 <div class="role-info">
-                    <h4>Técnico em Desenvolvimento de Sistemas</h4>
+                    <h4 data-i18n="edu2_title">Técnico em Desenvolvimento de Sistemas</h4>
                     <span class="company">SENAI Campus da Indústria</span>
                 </div>
-                <span class="date">02/2024 - 08/2025 – Completo</span>
+                <span class="date" data-i18n="edu2_date">02/2024 - 08/2025 – Completo</span>
             </div>
         </section>
 
         <section class="resume-section">
-            <h3>Habilidades Técnicas</h3>
+            <h3 data-i18n="skills_title">Habilidades Técnicas</h3>
             <div class="skills-grid">
                 <div class="skill-group">
-                    <h4>Linguagens</h4>
+                    <h4 data-i18n="skill1">Linguagens</h4>
                     <p>C, Go, Python, C#, TypeScript</p>
                 </div>
                 <div class="skill-group">
-                    <h4>Embarcados & IoT</h4>
+                    <h4 data-i18n="skill2">Embarcados & IoT</h4>
                     <p>ESP32, ESP-IDF, FreeRTOS, MQTT, Telemetria Industrial</p>
                 </div>
                 <div class="skill-group">
-                    <h4>Backend & Banco de Dados</h4>
+                    <h4 data-i18n="skill3">Backend & Banco de Dados</h4>
                     <p>PostgreSQL, MySQL, SQS, API REST, Node.js</p>
                 </div>
                 <div class="skill-group">
-                    <h4>Infraestrutura & Ferramentas</h4>
+                    <h4 data-i18n="skill4">Infraestrutura & Ferramentas</h4>
                     <p>Linux, Docker, Git, systemd, Obsidian</p>
                 </div>
             </div>
         </section>
     </div>
 
+    <!-- Script de Tradução -->
+    <script>
+        const translations = {
+            pt: {
+                btn_pdf: "Baixar PDF",
+                role: "Desenvolvedor de Firmware, IoT & Software",
+                summary_title: "Resumo Profissional",
+                summary_text: "Desenvolvedor de software focado em integração de hardware e arquiteturas de alta performance. Especialista na criação de firmware em <strong>C</strong> para microcontroladores ESP32 e desenvolvimento de microsserviços backend robustos em <strong>Go</strong>. Sólida experiência em Internet das Coisas Industrial (IIoT), automação de processos, protocolos de mensageria (MQTT, SQS) e administração de ambientes Linux.",
+                exp_title: "Experiência Profissional",
+                job1_title: "Programador C / Desenvolvedor de Sistemas Embarcados",
+                proj1_title: "Projeto: Telemetria IIoT e Roteamento de Dados",
+                proj1_item1: "Desenvolvimento de firmware em <strong>C</strong> para coletores de dados industriais utilizando ESP32 e <strong>FreeRTOS</strong>, focado em alta confiabilidade e determinismo.",
+                proj1_item2: "Criação de serviços de alta vazão em <strong>Go</strong> para ingestão, processamento via regex e roteamento de telemetria recebida por MQTT.",
+                proj1_item3: "Integração com bancos de dados relacionais (PostgreSQL) e orquestração de entregas com sistemas de filas.",
+                proj2_title: "Projeto: Integração SmartFactory",
+                proj2_item1: "Administração de ambiente <strong>Linux (Debian)</strong> embarcado em <strong>Raspberry Pi</strong> no chão de fábrica, configurando acessos SSH e rotinas via systemd.",
+                proj2_item2: "Manutenção e execução de aplicação conteinerizada via <strong>Docker</strong> responsável pela extração contínua de tags de Controladores Lógicos Programáveis (PLCs).",
+                proj2_item3: "Garantia da continuidade do serviço e monitoramento do sistema operacional para assegurar a estabilidade da coleta de dados industriais.",
+                tech_proj_title: "Projetos Técnicos Relevantes",
+                tech_proj_aida: "<strong>Aida (Assistente Virtual):</strong> Aplicação desktop desenvolvida em <strong>C# WPF</strong> com síntese de áudio (NAudio), personas de IA customizáveis e persistência em banco de dados MySQL.",
+                edu_title: "Formação Acadêmica",
+                edu1_title: "Bacharelado em Engenharia de Software",
+                edu1_date: "08/2026 – Cursando",
+                edu2_title: "Técnico em Desenvolvimento de Sistemas",
+                edu2_date: "02/2024 - 08/2025 – Completo",
+                skills_title: "Habilidades Técnicas",
+                skill1: "Linguagens",
+                skill2: "Embarcados & IoT",
+                skill3: "Backend & Banco de Dados",
+                skill4: "Infraestrutura & Ferramentas"
+            },
+            en: {
+                btn_pdf: "Download PDF",
+                role: "Firmware, IoT & Software Developer",
+                summary_title: "Professional Summary",
+                summary_text: "Software developer focused on hardware integration and high-performance architectures. Specialist in creating firmware in <strong>C</strong> for ESP32 microcontrollers and developing robust backend microservices in <strong>Go</strong>. Solid experience in Industrial Internet of Things (IIoT), process automation, messaging protocols (MQTT, SQS), and Linux environment administration.",
+                exp_title: "Professional Experience",
+                job1_title: "C Programmer / Embedded Systems Developer",
+                proj1_title: "Project: IIoT Telemetry and Data Routing",
+                proj1_item1: "Firmware development in <strong>C</strong> for industrial data collectors using ESP32 and <strong>FreeRTOS</strong>, focused on high reliability and determinism.",
+                proj1_item2: "Creation of high-throughput services in <strong>Go</strong> for ingestion, regex processing, and routing of telemetry received via MQTT.",
+                proj1_item3: "Integration with relational databases (PostgreSQL) and delivery orchestration with queue systems.",
+                proj2_title: "Project: SmartFactory Integration",
+                proj2_item1: "Administration of embedded <strong>Linux (Debian)</strong> environment on <strong>Raspberry Pi</strong> on the factory floor, configuring SSH access and systemd routines.",
+                proj2_item2: "Maintenance and execution of containerized application via <strong>Docker</strong> responsible for continuous extraction of tags from Programmable Logic Controllers (PLCs).",
+                proj2_item3: "Ensuring service continuity and operating system monitoring to ensure the stability of industrial data collection.",
+                tech_proj_title: "Relevant Technical Projects",
+                tech_proj_aida: "<strong>Aida (Virtual Assistant):</strong> Desktop application developed in <strong>C# WPF</strong> with audio synthesis (NAudio), customizable AI personas, and MySQL database persistence.",
+                edu_title: "Academic Background",
+                edu1_title: "Bachelor's in Software Engineering",
+                edu1_date: "08/2026 – In Progress",
+                edu2_title: "Systems Development Technician",
+                edu2_date: "02/2024 - 08/2025 – Completed",
+                skills_title: "Technical Skills",
+                skill1: "Languages",
+                skill2: "Embedded & IoT",
+                skill3: "Backend & Databases",
+                skill4: "Infrastructure & Tools"
+            }
+        };
+
+        let currentLang = 'pt';
+
+        function toggleLanguage() {
+            // Alterna o idioma
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            
+            // Atualiza o atributo lang do HTML para acessibilidade e SEO
+            document.getElementById('html-root').setAttribute('lang', currentLang === 'pt' ? 'pt-BR' : 'en');
+            
+            // Atualiza o texto do botão
+            document.getElementById('lang-label').innerText = currentLang === 'pt' ? 'EN' : 'PT';
+
+            // Encontra todos os elementos com o atributo data-i18n
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            // Substitui o HTML interno de cada elemento pela tradução correspondente
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+    </script>
 </body>
 </html>
